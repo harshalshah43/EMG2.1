@@ -1,0 +1,96 @@
+{% extends 'enquiry/base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12 m6 l6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Enquiry from : {{enquiry.contact.name}}</span>
+          <table>
+              <thead>
+                  <tr>
+                    <th>Details</th>
+                    <th>Value</th>
+                  </tr>
+                  
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Date</td>
+                  <td>{{enquiry.date_posted}}</td>
+              </tr>
+                <tr>
+                    <td>Party</td>
+                    <td><a href="{% url 'enquiry-by-party' enquiry.id %}">{{enquiry.party}}</a></td>
+                </tr>
+                <tr>
+                    <td>Brand</td>
+                    <td>{{enquiry.brand}}</td>
+                </tr>
+                <tr>
+                  <td>Item Code</td>
+                  <td><a href="{% url 'enquiry-by-item-code' enquiry.id %}">{{enquiry.item_code}}</td>
+                </tr>
+                <tr>
+                  <td>Qty</td>
+                  <td>{{enquiry.qty}}</td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td>{{enquiry.status}}</td>
+                    
+                </tr>
+                <tr>
+                    <td>Attachment</td>
+                    <td><a href="{{enquiry.attachment.url}}">{{enquiry.attachment}}</a></td>
+                </tr>
+                <tr>
+                  <td>Cust Type</td>
+                  <td>{{enquiry.cust_type}}</a></td>
+              </tr>
+              <tr>
+                <td>Media Choices</td>
+                <td>{{enquiry.media}}</a></td>
+            </tr>
+              </tbody>
+          </table>
+          <p>Description</p>
+          <p>{{enquiry.description}}</p>
+        </div>
+        <div class="card-action">
+          
+          <a href="{% url 'quotation-create' enquiry.id %}">Respond</a>
+          <a href="{% url 'enquiry-update' enquiry.id %}">Update</a>
+          <a href="{% url 'enquiry-delete' enquiry.id %}">Delete</a>
+        </div>
+    </div>
+  </div>
+</div>
+{% for quotation in quotations %}
+<div class="row">
+  <div class="col s12 m6 l8">
+    <div class="card-action">
+      <div class="col s12 m6 l6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Quotation</span>
+            <span class = 'card-title'>{{quotation.date_posted}}</span>
+            <table>
+              <thead>
+                <tr>
+                  <th>Unit: {{quotation.price_quotated}}</th>
+                  <th>Total: {{quotation.total_price}}</th>
+                  <th><a class="waves-effect waves-light btn" href="{% url 'enquiry-table' %}"><i class="material-icons left"></i>Enquiries</a></th>
+                </tr>
+            </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+
+{% endblock content %}

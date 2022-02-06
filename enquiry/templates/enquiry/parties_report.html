@@ -1,0 +1,48 @@
+{% extends 'enquiry/base.html' %}
+{% block content %}
+
+<div class="row">
+  <div class="col s12 m6 l12">
+    <div class="card blue-grey darken-1">
+      <div class="card-content white-text">
+        <center>
+        <span class="card-title" style="left: auto;">Party Report
+          <a class="waves-effect waves-light btn" href="{% url 'enquiry-table' %}"><i class="material-icons left"></i>Back To Table</a>
+        </span>
+      </center>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s3 m3 l3"></div>
+    <div class="col s12 m3 l6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+            <table>
+                <thead>
+                  <tr>
+                      <th>Party</th>
+                      <th>Number of enquiries</th>
+                  </tr>
+                </thead>
+                {% for party in parties %}
+                <tbody>
+                    
+                  <tr>
+                    <td>{{party.party}}</td>
+                    <td>{{party.count}}</td>
+                  </tr>
+                  
+                {% endfor %}
+                
+                </tbody>
+              </table>
+            <div class="card-content white-text"> 
+          <div class="card blue-grey darken-1">
+        <div class="col s12 m6 l12">
+      <div class="row">
+                  
+                    
+{% endblock %}
